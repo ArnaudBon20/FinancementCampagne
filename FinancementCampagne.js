@@ -56,6 +56,8 @@ const COLORS = {
  */
 function getSystemLanguage() {
   const lang = Device.language();
+  // Vérifier français en premier (fr, fr-CH, fr-FR)
+  if (lang.startsWith("fr")) return "fr";
   if (lang.startsWith("de")) return "de";
   if (lang.startsWith("it")) return "it";
   return "fr"; // Par défaut français
@@ -79,6 +81,30 @@ function formatCHF(amount) {
 function shortenTitle(title, maxLength = 35) {
   if (title.length <= maxLength) return title;
   return title.substring(0, maxLength - 3) + "...";
+}
+
+/**
+ * Extrait le nom court entre parenthèses
+ */
+function getShortTitle(title) {
+  const match = title.match(/\(([^)]+)\)\s*$/);
+  if (match) {
+    return match[1];
+  }
+  return shortenTitle(title, 40);
+}
+
+/**
+ * Formate la date de mise à jour (jour.mois)
+ */
+function formatUpdateDate(dateStr) {
+  if (!dateStr) return "";
+  // Format attendu: "2026-02-06 11:38" -> "06.02"
+  const parts = dateStr.split(" ")[0].split("-");
+  if (parts.length >= 3) {
+    return parts[2] + "." + parts[1];
+  }
+  return dateStr;
 }
 
 /**
@@ -165,7 +191,7 @@ async function createSmallWidget(data, lang) {
   
   // Mise à jour
   if (data && data.lastUpdate) {
-    const updateText = widget.addText(t.update + ": " + data.lastUpdate.split(" ")[0]);
+    const updateText = widget.addText(t.update + ": " + formatUpdateDate(data.lastUpdate));
     updateText.font = Font.systemFont(8);
     updateText.textColor = COLORS.date;
     updateText.rightAlignText();
@@ -258,7 +284,7 @@ async function createMediumWidget(data, lang) {
     const footerStack = widget.addStack();
     footerStack.layoutHorizontally();
     footerStack.addSpacer();
-    const updateText = footerStack.addText(t.update + ": " + data.lastUpdate);
+    const updateText = footerStack.addText(t.update + ": " + formatUpdateDate(data.lastUpdate));
     updateText.font = Font.systemFont(8);
     updateText.textColor = COLORS.date;
   }
@@ -304,16 +330,17 @@ async function createLargeWidget(data, lang) {
   if (data && data.votations && data.votations.length > 0) {
     for (let i = 0; i < data.votations.length; i++) {
       const v = data.votations[i];
-      const title = v.title[lang] || v.title.fr || "N/A";
+      const fullTitle = v.title[lang] || v.title.fr || "N/A";
+      const title = getShortTitle(fullTitle);
       
       const vStack = widget.addStack();
       vStack.layoutVertically();
       
-      // Titre de la votation
+      // Titre de la votation (nom court)
       const titleLine = vStack.addText(title);
       titleLine.font = Font.mediumSystemFont(12);
       titleLine.textColor = COLORS.title;
-      titleLine.lineLimit = 2;
+      titleLine.lineLimit = 1;
       
       vStack.addSpacer(4);
       
@@ -376,7 +403,7 @@ async function createLargeWidget(data, lang) {
   footerStack.addSpacer();
   
   if (data && data.lastUpdate) {
-    const updateText = footerStack.addText(t.update + ": " + data.lastUpdate);
+    const updateText = footerStack.addText(t.update + ": " + formatUpdateDate(data.lastUpdate));
     updateText.font = Font.systemFont(9);
     updateText.textColor = COLORS.date;
   }
