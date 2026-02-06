@@ -72,17 +72,24 @@ function shortenTitle(title, maxLength) {
 function getShortTitle(title) {
   // Extract text in parentheses at end
   const match = title.match(/\(([^)]+)\)\s*$/);
-  if (match) return match[1];
+  if (match) {
+    let result = match[1];
+    // Capitalize Initiative
+    result = result.replace(/^initiative/i, "Initiative");
+    return result;
+  }
   
-  // Remove law prefixes with dates
+  // Remove law prefixes with dates (fr/de/it)
   let cleaned = title;
-  cleaned = cleaned.replace(/^Bundesgesetz vom \d{1,2}\.?\s*\w+\.?\s*\d{4}\s*(ueber|uber|über)?\s*/i, "");
-  cleaned = cleaned.replace(/^Loi federale du \d{1,2}\s*\w+\s*\d{4}\s*sur\s*/i, "");
-  cleaned = cleaned.replace(/^Legge federale del \d{1,2}\s*\w+\s*\d{4}\s*su[l]?\s*/i, "");
+  cleaned = cleaned.replace(/^Bundesgesetz vom \d{1,2}\.?\s*\w+\.?\s*\d{4}\s*(ueber|uber|über)?\s*(die\s+)?/i, "");
+  cleaned = cleaned.replace(/^Loi f[eé]d[eé]rale du \d{1,2}\s*\w+\s*\d{4}\s*sur\s*(l[ea]?\s*)?/i, "");
+  cleaned = cleaned.replace(/^Legge federale del \d{1,2}\s*\w+\s*\d{4}\s*su(ll[ao]?)?\s*/i, "");
   
   if (cleaned !== title && cleaned.length > 0) {
     // Capitalize first letter
-    return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+    let result = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+    result = result.replace(/^initiative/i, "Initiative");
+    return result;
   }
   
   return shortenTitle(title, 40);
