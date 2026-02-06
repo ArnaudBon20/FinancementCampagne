@@ -2,59 +2,55 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: red; icon-glyph: money-bill-wave;
 
-/**
- * Loader pour le widget Financement des Campagnes
- * 
- * Ce script charge automatiquement la dernière version du widget
- * depuis GitHub à chaque exécution.
- * 
- * Installation unique : copiez ce fichier dans Scriptable,
- * les mises à jour seront automatiques.
- */
+// Loader - Financement des Campagnes
+// Charge automatiquement la derniere version depuis GitHub
 
 const WIDGET_URL = "https://raw.githubusercontent.com/ArnaudBon20/FinancementCampagne/main/FinancementCampagne.js";
 const CACHE_FILE = "FinancementCampagne-Cache.js";
+const MODULE_NAME = "FinancementCampagne-Module";
 
-async function loadWidget() {
-  const fm = FileManager.local();
-  const cacheDir = fm.cacheDirectory();
-  const cachePath = fm.joinPath(cacheDir, CACHE_FILE);
-  
-  let code;
-  
+const fm = FileManager.local();
+const docsDir = fm.documentsDirectory();
+const modulePath = fm.joinPath(docsDir, MODULE_NAME + ".js");
+
+async function downloadAndSave() {
   try {
-    // Télécharger la dernière version
     const req = new Request(WIDGET_URL);
-    req.timeoutInterval = 10;
-    code = await req.loadString();
+    req.timeoutInterval = 15;
+    const code = await req.loadString();
     
-    if (code && code.length > 100) {
-      // Sauvegarder en cache
-      fm.writeString(cachePath, code);
-      console.log("Widget mis à jour depuis GitHub");
-    } else {
-      throw new Error("Code invalide");
+    if (code && code.length > 100 && !code.includes("404")) {
+      fm.writeString(modulePath, code);
+      console.log("Module updated from GitHub");
+      return true;
     }
-  } catch (error) {
-    console.log("Erreur réseau, utilisation du cache: " + error);
-    // Utiliser le cache si disponible
-    if (fm.fileExists(cachePath)) {
-      code = fm.readString(cachePath);
-    } else {
-      // Afficher un widget d'erreur
-      const widget = new ListWidget();
-      widget.backgroundColor = new Color("#1C1C1E");
-      const text = widget.addText("⚠️ Erreur de chargement");
-      text.textColor = Color.white();
-      text.font = Font.systemFont(12);
-      Script.setWidget(widget);
-      Script.complete();
-      return;
-    }
+  } catch (e) {
+    console.log("Download error: " + e);
   }
-  
-  // Exécuter le code du widget
-  await eval(code);
+  return false;
 }
 
-await loadWidget();
+async function showErrorWidget(msg) {
+  const widget = new ListWidget();
+  widget.backgroundColor = new Color("#1C1C1E");
+  const text = widget.addText("⚠️ " + msg);
+  text.textColor = Color.white();
+  text.font = Font.systemFont(11);
+  if (config.runsInWidget) {
+    Script.setWidget(widget);
+  } else {
+    widget.presentMedium();
+  }
+  Script.complete();
+}
+
+// Download latest version
+await downloadAndSave();
+
+// Check if module exists
+if (!fm.fileExists(modulePath)) {
+  await showErrorWidget("Module not found");
+} else {
+  // Import and run the module
+  const widget = importModule(MODULE_NAME);
+}
