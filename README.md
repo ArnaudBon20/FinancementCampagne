@@ -24,12 +24,12 @@ Le widget s'adapte automatiquement à la langue du système :
 - iPhone avec iOS 14+
 - Application [Scriptable](https://apps.apple.com/app/scriptable/id1405459188) installée
 
-### Étapes
+### Méthode recommandée (mise à jour automatique) ✨
 
-1. **Télécharger le script**
+1. **Télécharger le Loader**
    - Ouvrez ce lien dans Safari sur votre iPhone :
    ```
-   https://raw.githubusercontent.com/ArnaudBon20/FinancementCampagne/main/FinancementCampagne.js
+   https://raw.githubusercontent.com/ArnaudBon20/FinancementCampagne/main/FinancementCampagne-Loader.js
    ```
    - Copiez tout le contenu
 
@@ -47,6 +47,12 @@ Le widget s'adapte automatiquement à la langue du système :
    - Choisissez la taille (Small, Medium ou Large)
    - Appuyez longuement sur le widget > "Modifier le widget"
    - Sélectionnez "Financement Campagne" dans Script
+
+> 💡 **Avantage** : Le widget se mettra à jour automatiquement quand des améliorations sont publiées sur GitHub. Plus besoin de copier-coller manuellement !
+
+### Méthode alternative (sans mise à jour auto)
+
+Utilisez `FinancementCampagne.js` à la place du Loader si vous préférez une version figée
 
 ## 📊 Tailles disponibles
 
