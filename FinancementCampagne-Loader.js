@@ -52,5 +52,8 @@ if (!fm.fileExists(modulePath)) {
   await showErrorWidget("Module not found");
 } else {
   // Import and run the module
-  const widget = importModule(MODULE_NAME);
+  const mod = importModule(MODULE_NAME);
+  if (mod && mod.main) {
+    await mod.main();
+  }
 }

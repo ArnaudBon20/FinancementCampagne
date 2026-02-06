@@ -449,4 +449,8 @@ async function main() {
   Script.complete();
 }
 
-await main();
+// Export for module use or run directly
+module.exports = { main };
+if (typeof importModule === "undefined" || Script.name() === "FinancementCampagne-Module") {
+  await main();
+}
