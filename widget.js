@@ -86,9 +86,12 @@ function getShortTitle(title) {
   cleaned = cleaned.replace(/^Legge federale del \d{1,2}\s*\w+\s*\d{4}\s*su(ll[ao]?)?\s*/i, "");
   
   if (cleaned !== title && cleaned.length > 0) {
+    // Remove leading apostrophes, quotes and spaces
+    let result = cleaned.replace(/^[\s''"«»]+/, "");
     // Capitalize first letter
-    let result = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+    result = result.charAt(0).toUpperCase() + result.slice(1);
     result = result.replace(/^initiative/i, "Initiative");
+    result = result.replace(/^imposition/i, "Imposition");
     return result;
   }
   
