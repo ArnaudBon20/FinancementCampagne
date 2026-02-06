@@ -85,12 +85,12 @@ function getShortTitle(title) {
   // Remove law prefixes with dates (fr/de/it)
   let cleaned = title;
   cleaned = cleaned.replace(/^Bundesgesetz vom \d{1,2}\.?\s*\w+\.?\s*\d{4}\s*(ueber|uber|über)?\s*(die\s+)?/i, "");
-  cleaned = cleaned.replace(/^Loi f[eé]d[eé]rale du \d{1,2}\s*\w+\s*\d{4}\s*sur\s*(l[ea]?['''`]?\s*)?/i, "");
+  cleaned = cleaned.replace(/^Loi f[eé]d[eé]rale du \d{1,2}\s*\w+\s*\d{4}\s*sur\s*(l[ea]?[\u0027\u2018\u2019\u0060]?\s*)?/i, "");
   cleaned = cleaned.replace(/^Legge federale del \d{1,2}\s*\w+\s*\d{4}\s*su(ll[ao]?)?\s*/i, "");
   
   if (cleaned !== title && cleaned.length > 0) {
     // Remove leading apostrophes, quotes and spaces
-    let result = cleaned.replace(/^[\s'''`"«»]+/, "");
+    let result = cleaned.replace(/^[\s\u0027\u0060\u2018\u2019\u201C\u201D\u00AB\u00BB]+/, "");
     // Capitalize first letter
     result = result.charAt(0).toUpperCase() + result.slice(1);
     result = result.replace(/^initiative/i, "Initiative");
