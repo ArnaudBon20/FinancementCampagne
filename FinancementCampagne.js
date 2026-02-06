@@ -11,6 +11,8 @@
  */
 
 const DATA_URL = "https://raw.githubusercontent.com/ArnaudBon20/FinancementCampagne/main/data.json";
+const VERSION_URL = "https://raw.githubusercontent.com/ArnaudBon20/FinancementCampagne/main/version.json";
+const CURRENT_VERSION = "1.0.0";
 
 // Traductions
 const TRANSLATIONS = {
@@ -119,6 +121,21 @@ async function fetchData() {
     console.error("Erreur fetch data: " + error);
     return null;
   }
+}
+
+/**
+ * Vérifie si une mise à jour est disponible
+ */
+async function checkForUpdate() {
+  try {
+    const req = new Request(VERSION_URL);
+    req.timeoutInterval = 5;
+    const info = await req.loadJSON();
+    if (info && info.version && info.version !== CURRENT_VERSION) {
+      return true;
+    }
+  } catch (e) {}
+  return false;
 }
 
 /**
@@ -415,6 +432,7 @@ async function createLargeWidget(data, lang) {
 async function main() {
   const lang = getSystemLanguage();
   const data = await fetchData();
+  const hasUpdate = await checkForUpdate();
   
   let widget;
   const widgetSize = config.widgetFamily || "medium";
@@ -428,6 +446,17 @@ async function main() {
       break;
     default:
       widget = await createMediumWidget(data, lang);
+  }
+  
+  // Indicateur de mise a jour
+  if (hasUpdate) {
+    const updateStack = widget.addStack();
+    updateStack.layoutHorizontally();
+    updateStack.addSpacer();
+    const updateTxt = updateStack.addText("\u26A0\uFE0F Mise a jour dispo");
+    updateTxt.font = Font.systemFont(8);
+    updateTxt.textColor = new Color("#FF9500");
+    updateTxt.url = "https://github.com/ArnaudBon20/FinancementCampagne";
   }
   
   if (config.runsInWidget) {
@@ -449,8 +478,4 @@ async function main() {
   Script.complete();
 }
 
-// Export for module use or run directly
-module.exports = { main };
-if (typeof importModule === "undefined" || Script.name() === "FinancementCampagne-Module") {
-  await main();
-}
+await main();
