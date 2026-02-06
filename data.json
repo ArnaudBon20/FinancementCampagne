@@ -1,0 +1,208 @@
+{
+  "lastUpdate": "2026-02-06 11:38",
+  "nextVoteDate": "08.03.2026",
+  "translations": {
+    "fr": {
+      "title": "Financement des campagnes",
+      "date_label": "Date",
+      "supporters": "Soutiens",
+      "opponents": "Opposants",
+      "update": "Mise à jour",
+      "adoption": "adoption",
+      "rejection": "rejet"
+    },
+    "de": {
+      "title": "Kampagnenfinanzierung",
+      "date_label": "Datum",
+      "supporters": "Befürworter",
+      "opponents": "Gegner",
+      "update": "Aktualisierung",
+      "adoption": "annahme",
+      "rejection": "ablehnung"
+    },
+    "it": {
+      "title": "Finanziamento delle campagne",
+      "date_label": "Data",
+      "supporters": "Sostenitori",
+      "opponents": "Oppositori",
+      "update": "Aggiornamento",
+      "adoption": "adozione",
+      "rejection": "rigetto"
+    }
+  },
+  "votations": [
+    {
+      "id": 23,
+      "title": {
+        "fr": "Oui à une monnaie suisse libre et indépendante sous forme de pièces ou de billets (l’argent liquide, c’est la liberté) et contre-projet direct, à savoir l’arrêté fédéral sur la monnaie suisse et l’approvisionnement en numéraire",
+        "de": "Ja zu einer unabhängigen, freien Schweizer Währung mit Münzen oder Banknoten (Bargeld ist Freiheit) und direkter Gegenentwurf Bundesbeschluss über die schweizerische Währung und die Bargeldversorgung",
+        "it": "Sì a una valuta svizzera indipendente e libera con monete o banconote (Il denaro contante è libertà) e il relativo controprogetto diretto «Decreto federale concernente l’unità monetaria svizzera e l’approvvigionamento in numerario"
+      },
+      "date": "08.03.2026",
+      "supporters_total": 0,
+      "opponents_total": 0,
+      "supporters_count": 0,
+      "opponents_count": 0,
+      "actors": []
+    },
+    {
+      "id": 25,
+      "title": {
+        "fr": "Pour une politique énergétique et climatique équitable : investir pour la prospérité, le travail et l’environnement (initiative pour un fonds climat)",
+        "de": "Für eine gerechte Energie- und Klimapolitik: Investieren für Wohlstand, Arbeit und Umwelt (Klimafonds-Initiative)",
+        "it": "Per una politica energetica e climatica equa: investire per la prosperità, il lavoro e l’ambiente (Iniziativa per un fondo per il clima)"
+      },
+      "date": "08.03.2026",
+      "supporters_total": 649000.0,
+      "opponents_total": 1386630.0,
+      "supporters_count": 3,
+      "opponents_count": 1,
+      "actors": [
+        {
+          "name": "Allianz \"NEIN zum Klima-Schuldenfonds\", Bern",
+          "position": "opponent",
+          "total": 1386630.0,
+          "campaign_id": 550
+        },
+        {
+          "name": "Komitee Klimafonds-Initiative, Bern",
+          "position": "supporter",
+          "total": 170000.0,
+          "campaign_id": 555
+        },
+        {
+          "name": "Les VERT-E-S suisses, Bern",
+          "position": "supporter",
+          "total": 90000.0,
+          "campaign_id": 551
+        },
+        {
+          "name": "Sozialdemokratische Partei der Schweiz, Bern",
+          "position": "supporter",
+          "total": 389000.0,
+          "campaign_id": 554
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "title": {
+        "fr": "200 francs, ça suffit ! (initiative SSR)",
+        "de": "200 Franken sind genug! (SRG-Initiative)",
+        "it": "200 franchi bastano! (Iniziativa SSR)"
+      },
+      "date": "08.03.2026",
+      "supporters_total": 1887530.0,
+      "opponents_total": 3883228.17,
+      "supporters_count": 4,
+      "opponents_count": 8,
+      "actors": [
+        {
+          "name": "Allianz Pro Medienvielfalt, Bern",
+          "position": "opponent",
+          "total": 400099.5,
+          "campaign_id": 552
+        },
+        {
+          "name": "Conseil Suisse de la Musique CSM, Aarau",
+          "position": "opponent",
+          "total": 380000.0,
+          "campaign_id": 556
+        },
+        {
+          "name": "IG SRG-Initiative «200 Franken sind genug!», Dübendorf",
+          "position": "supporter",
+          "total": 1467530.0,
+          "campaign_id": 545
+        },
+        {
+          "name": "KMU- und Gewerbeverband Kanton Zürich, Zürich",
+          "position": "supporter",
+          "total": 60000.0,
+          "campaign_id": 557
+        },
+        {
+          "name": "Operation Libero, Bern",
+          "position": "opponent",
+          "total": 251276.0,
+          "campaign_id": 539
+        },
+        {
+          "name": "Souveräne Medien Schweiz, Zürich",
+          "position": "opponent",
+          "total": 1312852.67,
+          "campaign_id": 543
+        },
+        {
+          "name": "Sozialdemokratische Partei der Schweiz, Bern",
+          "position": "opponent",
+          "total": 820000.0,
+          "campaign_id": 553
+        },
+        {
+          "name": "Sportkomitee gegen die Halbierungsinitiative, Gstaad",
+          "position": "opponent",
+          "total": 219000.0,
+          "campaign_id": 549
+        },
+        {
+          "name": "Stiftung für direkte Demokratie, Basel",
+          "position": "opponent",
+          "total": 150000.0,
+          "campaign_id": 547
+        },
+        {
+          "name": "Union Démocratique Fédérale Suisse (UDF Suisse), Thoune",
+          "position": "supporter",
+          "total": 90000.0,
+          "campaign_id": 541
+        },
+        {
+          "name": "Union suisse des arts et métiers, Berne",
+          "position": "supporter",
+          "total": 270000.0,
+          "campaign_id": 546
+        },
+        {
+          "name": "Unsere Filme retten, Bern",
+          "position": "opponent",
+          "total": 350000.0,
+          "campaign_id": 558
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "title": {
+        "fr": "Loi fédérale du 20 juin 2025 sur l’imposition individuelle",
+        "de": "Bundesgesetz vom 20. Juni 2025 über die Individualbesteuerung",
+        "it": "Legge federale del 20 giugno 2025 sull’imposizione individuale"
+      },
+      "date": "08.03.2026",
+      "supporters_total": 550000.0,
+      "opponents_total": 388000.0,
+      "supporters_count": 1,
+      "opponents_count": 2,
+      "actors": [
+        {
+          "name": "JA zur Individualbesteuerung, Bern",
+          "position": "supporter",
+          "total": 550000.0,
+          "campaign_id": 542
+        },
+        {
+          "name": "Le Centre, Bern",
+          "position": "opponent",
+          "total": 188000.0,
+          "campaign_id": 540
+        },
+        {
+          "name": "Union Démocratique du Centre (UDC), Bern",
+          "position": "opponent",
+          "total": 200000.0,
+          "campaign_id": 544
+        }
+      ]
+    }
+  ]
+}

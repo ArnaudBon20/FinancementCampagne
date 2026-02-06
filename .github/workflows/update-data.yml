@@ -1,0 +1,39 @@
+name: Update Campaign Finance Data
+
+on:
+  schedule:
+    # Tous les 2 jours à 23h00 UTC+1 (22h00 UTC)
+    - cron: '0 22 */2 * *'
+  workflow_dispatch: # Permet de lancer manuellement
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run scraper
+        run: python scraper.py
+      
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add data.json
+          git diff --staged --quiet || git commit -m "🔄 Mise à jour des données de financement - $(date +'%Y-%m-%d %H:%M')"
+          git push
