@@ -41,14 +41,15 @@ const COLORS = {
 };
 
 function getSystemLanguage() {
-  // Check locale first (more reliable for Switzerland)
-  const locale = Device.locale();
-  const lang = Device.language();
+  // Use preferredLanguages - most reliable method
+  const prefs = Device.preferredLanguages();
   
-  // Check both locale and language
-  if (locale.includes("fr") || lang.includes("fr")) return "fr";
-  if (locale.includes("de") || lang.includes("de")) return "de";
-  if (locale.includes("it") || lang.includes("it")) return "it";
+  for (const p of prefs) {
+    const l = p.toLowerCase();
+    if (l.indexOf("fr") >= 0) return "fr";
+    if (l.indexOf("de") >= 0) return "de";
+    if (l.indexOf("it") >= 0) return "it";
+  }
   
   return "fr";
 }
@@ -69,8 +70,21 @@ function shortenTitle(title, maxLength) {
 }
 
 function getShortTitle(title) {
+  // Extract text in parentheses at end
   const match = title.match(/\(([^)]+)\)\s*$/);
   if (match) return match[1];
+  
+  // Remove law prefixes with dates
+  let cleaned = title;
+  cleaned = cleaned.replace(/^Bundesgesetz vom \d{1,2}\.?\s*\w+\.?\s*\d{4}\s*(ueber|uber|über)?\s*/i, "");
+  cleaned = cleaned.replace(/^Loi federale du \d{1,2}\s*\w+\s*\d{4}\s*sur\s*/i, "");
+  cleaned = cleaned.replace(/^Legge federale del \d{1,2}\s*\w+\s*\d{4}\s*su[l]?\s*/i, "");
+  
+  if (cleaned !== title && cleaned.length > 0) {
+    // Capitalize first letter
+    return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+  }
+  
   return shortenTitle(title, 40);
 }
 
@@ -344,7 +358,8 @@ async function createLargeWidget(data, lang) {
   const footerStack = widget.addStack();
   footerStack.layoutHorizontally();
   
-  const sourceText = footerStack.addText("Source: EFK/CDF");
+  const sourceName = lang === "de" ? "EFK" : "CDF";
+  const sourceText = footerStack.addText("Source: " + sourceName);
   sourceText.font = Font.systemFont(9);
   sourceText.textColor = COLORS.date;
   sourceText.url = "https://politikfinanzierung.efk.admin.ch";
