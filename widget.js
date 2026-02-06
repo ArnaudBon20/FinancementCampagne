@@ -6,27 +6,30 @@ const DATA_URL = "https://raw.githubusercontent.com/ArnaudBon20/FinancementCampa
 const TRANSLATIONS = {
   fr: {
     title: "Financement des campagnes",
-    date_label: "Votation du",
+    date_label: "Votations",
     supporters: "Pour",
     opponents: "Contre",
-    update: "Mise a jour",
-    no_data: "Pas de donnees"
+    update: "Mise \u00e0 jour",
+    no_data: "Pas de donnees",
+    months: ["janvier", "f\u00e9vrier", "mars", "avril", "mai", "juin", "juillet", "ao\u00fbt", "septembre", "octobre", "novembre", "d\u00e9cembre"]
   },
   de: {
     title: "Kampagnenfinanzierung",
-    date_label: "Abstimmung vom",
+    date_label: "Abstimmungen",
     supporters: "Ja",
     opponents: "Nein",
     update: "Aktualisierung",
-    no_data: "Keine Daten"
+    no_data: "Keine Daten",
+    months: ["Januar", "Februar", "M\u00e4rz", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
   },
   it: {
     title: "Finanziamento campagne",
-    date_label: "Votazione del",
+    date_label: "Votazioni",
     supporters: "Si",
     opponents: "No",
     update: "Aggiornamento",
-    no_data: "Nessun dato"
+    no_data: "Nessun dato",
+    months: ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"]
   }
 };
 
@@ -98,11 +101,26 @@ function getShortTitle(title) {
   return shortenTitle(title, 40);
 }
 
-function formatUpdateDate(dateStr) {
+function formatUpdateDate(dateStr, lang) {
   if (!dateStr) return "";
   const parts = dateStr.split(" ")[0].split("-");
   if (parts.length >= 3) {
-    return parts[2] + "." + parts[1];
+    const day = lang === "fr" ? parseInt(parts[2], 10) : parts[2];
+    const month = lang === "fr" ? parseInt(parts[1], 10) : parts[1];
+    return day + "." + month + ".";
+  }
+  return dateStr;
+}
+
+function formatVoteDate(dateStr, lang) {
+  if (!dateStr) return "";
+  const t = TRANSLATIONS[lang];
+  const parts = dateStr.split(".");
+  if (parts.length >= 3) {
+    const day = parseInt(parts[0], 10);
+    const monthIdx = parseInt(parts[1], 10) - 1;
+    const year = parts[2];
+    return day + " " + t.months[monthIdx] + " " + year;
   }
   return dateStr;
 }
@@ -125,15 +143,18 @@ async function createSmallWidget(data, lang) {
   
   const titleStack = widget.addStack();
   titleStack.layoutHorizontally();
-  const titleText = titleStack.addText("💰 " + t.title);
-  titleText.font = Font.boldSystemFont(11);
+  const titleText = titleStack.addText("\uD83D\uDCB0 " + t.title);
+  titleText.font = Font.boldSystemFont(10);
   titleText.textColor = COLORS.title;
   
   widget.addSpacer(4);
   
   if (data && data.nextVoteDate) {
-    const dateText = widget.addText(t.date_label + " " + data.nextVoteDate);
-    dateText.font = Font.systemFont(10);
+    const dateLabelText = widget.addText(t.date_label);
+    dateLabelText.font = Font.systemFont(9);
+    dateLabelText.textColor = COLORS.date;
+    const dateText = widget.addText(formatVoteDate(data.nextVoteDate, lang));
+    dateText.font = Font.systemFont(9);
     dateText.textColor = COLORS.date;
   }
   
@@ -181,7 +202,7 @@ async function createSmallWidget(data, lang) {
   widget.addSpacer();
   
   if (data && data.lastUpdate) {
-    const updateText = widget.addText(t.update + ": " + formatUpdateDate(data.lastUpdate));
+    const updateText = widget.addText(t.update + ": " + formatUpdateDate(data.lastUpdate, lang));
     updateText.font = Font.systemFont(8);
     updateText.textColor = COLORS.date;
     updateText.rightAlignText();
@@ -201,16 +222,23 @@ async function createMediumWidget(data, lang) {
   headerStack.layoutHorizontally();
   headerStack.centerAlignContent();
   
-  const titleText = headerStack.addText("💰 " + t.title);
-  titleText.font = Font.boldSystemFont(14);
+  const titleText = headerStack.addText("\uD83D\uDCB0 " + t.title);
+  titleText.font = Font.boldSystemFont(13);
   titleText.textColor = COLORS.title;
   
   headerStack.addSpacer();
   
   if (data && data.nextVoteDate) {
-    const dateText = headerStack.addText(t.date_label + " " + data.nextVoteDate);
-    dateText.font = Font.systemFont(11);
+    const dateStack = headerStack.addStack();
+    dateStack.layoutVertically();
+    const dateLabelText = dateStack.addText(t.date_label);
+    dateLabelText.font = Font.systemFont(10);
+    dateLabelText.textColor = COLORS.date;
+    dateLabelText.rightAlignText();
+    const dateText = dateStack.addText(formatVoteDate(data.nextVoteDate, lang));
+    dateText.font = Font.systemFont(10);
     dateText.textColor = COLORS.date;
+    dateText.rightAlignText();
   }
   
   widget.addSpacer(8);
@@ -270,7 +298,7 @@ async function createMediumWidget(data, lang) {
     const footerStack = widget.addStack();
     footerStack.layoutHorizontally();
     footerStack.addSpacer();
-    const updateText = footerStack.addText(t.update + ": " + formatUpdateDate(data.lastUpdate));
+    const updateText = footerStack.addText(t.update + ": " + formatUpdateDate(data.lastUpdate, lang));
     updateText.font = Font.systemFont(8);
     updateText.textColor = COLORS.date;
   }
@@ -289,16 +317,23 @@ async function createLargeWidget(data, lang) {
   headerStack.layoutHorizontally();
   headerStack.centerAlignContent();
   
-  const titleText = headerStack.addText("💰 " + t.title);
-  titleText.font = Font.boldSystemFont(16);
+  const titleText = headerStack.addText("\uD83D\uDCB0 " + t.title);
+  titleText.font = Font.boldSystemFont(15);
   titleText.textColor = COLORS.title;
   
   headerStack.addSpacer();
   
   if (data && data.nextVoteDate) {
-    const dateText = headerStack.addText(t.date_label + " " + data.nextVoteDate);
-    dateText.font = Font.systemFont(12);
+    const dateStack = headerStack.addStack();
+    dateStack.layoutVertically();
+    const dateLabelText = dateStack.addText(t.date_label);
+    dateLabelText.font = Font.systemFont(11);
+    dateLabelText.textColor = COLORS.date;
+    dateLabelText.rightAlignText();
+    const dateText = dateStack.addText(formatVoteDate(data.nextVoteDate, lang));
+    dateText.font = Font.systemFont(11);
     dateText.textColor = COLORS.date;
+    dateText.rightAlignText();
   }
   
   widget.addSpacer(10);
@@ -379,7 +414,7 @@ async function createLargeWidget(data, lang) {
   footerStack.addSpacer();
   
   if (data && data.lastUpdate) {
-    const updateText = footerStack.addText(t.update + ": " + formatUpdateDate(data.lastUpdate));
+    const updateText = footerStack.addText(t.update + ": " + formatUpdateDate(data.lastUpdate, lang));
     updateText.font = Font.systemFont(9);
     updateText.textColor = COLORS.date;
   }
