@@ -90,7 +90,7 @@ function getShortTitle(title) {
   
   if (cleaned !== title && cleaned.length > 0) {
     // Remove leading apostrophes, quotes and spaces
-    let result = cleaned.replace(/^[\s''"«»]+/, "");
+    let result = cleaned.replace(/^[\s'''`"«»]+/, "");
     // Capitalize first letter
     result = result.charAt(0).toUpperCase() + result.slice(1);
     result = result.replace(/^initiative/i, "Initiative");
