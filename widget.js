@@ -85,7 +85,7 @@ function getShortTitle(title) {
   // Remove law prefixes with dates (fr/de/it)
   let cleaned = title;
   cleaned = cleaned.replace(/^Bundesgesetz vom \d{1,2}\.?\s*\w+\.?\s*\d{4}\s*(ueber|uber|über)?\s*(die\s+)?/i, "");
-  cleaned = cleaned.replace(/^Loi f[eé]d[eé]rale du \d{1,2}\s*\w+\s*\d{4}\s*sur\s*(l[ea]?\s*)?/i, "");
+  cleaned = cleaned.replace(/^Loi f[eé]d[eé]rale du \d{1,2}\s*\w+\s*\d{4}\s*sur\s*(l[ea]?['''`]?\s*)?/i, "");
   cleaned = cleaned.replace(/^Legge federale del \d{1,2}\s*\w+\s*\d{4}\s*su(ll[ao]?)?\s*/i, "");
   
   if (cleaned !== title && cleaned.length > 0) {
