@@ -187,6 +187,7 @@ async function createSmallWidget(data, lang) {
     updateText.rightAlignText();
   }
   
+  widget.url = "https://politikfinanzierung.efk.admin.ch/app/" + lang + "/campaign-financings";
   return widget;
 }
 
@@ -274,6 +275,7 @@ async function createMediumWidget(data, lang) {
     updateText.textColor = COLORS.date;
   }
   
+  widget.url = "https://politikfinanzierung.efk.admin.ch/app/" + lang + "/campaign-financings";
   return widget;
 }
 
@@ -382,6 +384,7 @@ async function createLargeWidget(data, lang) {
     updateText.textColor = COLORS.date;
   }
   
+  widget.url = "https://politikfinanzierung.efk.admin.ch/app/" + lang + "/campaign-financings";
   return widget;
 }
 
