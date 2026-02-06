@@ -11,8 +11,7 @@ Ce widget affiche pour chaque votation fédérale à venir :
 
 **Source des données** : [EFK/CDF - Politikfinanzierung](https://politikfinanzierung.efk.admin.ch)
 
-![CampagneFinances](https://github.com/user-attachments/assets/01eb5dce-c31c-45e4-9898-0f1c7165f5a2)
-
+<img width="516" height="539" alt="CampagneFinancement_d" src="https://github.com/user-attachments/assets/5d52ccef-9fe7-413d-8ac3-7753026590c5" />
 
 ## 🌍 Langues supportées
 
