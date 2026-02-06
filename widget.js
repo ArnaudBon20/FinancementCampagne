@@ -41,10 +41,15 @@ const COLORS = {
 };
 
 function getSystemLanguage() {
+  // Check locale first (more reliable for Switzerland)
+  const locale = Device.locale();
   const lang = Device.language();
-  if (lang.startsWith("fr")) return "fr";
-  if (lang.startsWith("de")) return "de";
-  if (lang.startsWith("it")) return "it";
+  
+  // Check both locale and language
+  if (locale.includes("fr") || lang.includes("fr")) return "fr";
+  if (locale.includes("de") || lang.includes("de")) return "de";
+  if (locale.includes("it") || lang.includes("it")) return "it";
+  
   return "fr";
 }
 
@@ -115,7 +120,8 @@ async function createSmallWidget(data, lang) {
     
     for (let i = 0; i < maxVotations; i++) {
       const v = data.votations[i];
-      const title = v.title[lang] || v.title.fr || "N/A";
+      const fullTitle = v.title[lang] || v.title.fr || "N/A";
+      const title = getShortTitle(fullTitle);
       
       const vStack = widget.addStack();
       vStack.layoutVertically();
@@ -201,7 +207,8 @@ async function createMediumWidget(data, lang) {
     for (let i = 0; i < Math.min(4, votations.length); i++) {
       const v = votations[i];
       const column = i < 2 ? leftColumn : rightColumn;
-      const title = v.title[lang] || v.title.fr || "N/A";
+      const fullTitle = v.title[lang] || v.title.fr || "N/A";
+      const title = getShortTitle(fullTitle);
       
       const vStack = column.addStack();
       vStack.layoutVertically();
