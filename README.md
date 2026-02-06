@@ -50,8 +50,6 @@ Le widget s'adapte automatiquement à la langue du système :
    - Appuyez longuement sur le widget > "Modifier le widget"
    - Sélectionnez "Financement Campagne" dans Script
 
-> 💡 **Notification de mise à jour** : Le widget affichera un indicateur orange "⚠️ Mise à jour dispo" quand une nouvelle version est disponible sur GitHub
-
 ## 📊 Tailles disponibles
 
 | Taille | Description |
