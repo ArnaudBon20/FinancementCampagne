@@ -1,6 +1,7 @@
 # 💰 Financement des Campagnes - Widget iOS
 
 Widget iOS (Scriptable) affichant les budgets des campagnes de votations suisses.
+Il s'agit des budgets annoncés par les acteurs politiques. Les décomptes finaux ne sont pas pris en compte.
 
 ## 📱 Aperçu
 
