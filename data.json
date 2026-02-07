@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-06 11:38",
+  "lastUpdate": "2026-02-07 22:14",
   "nextVoteDate": "08.03.2026",
   "translations": {
     "fr": {
@@ -179,9 +179,9 @@
         "it": "Legge federale del 20 giugno 2025 sull’imposizione individuale"
       },
       "date": "08.03.2026",
-      "supporters_total": 550000.0,
+      "supporters_total": 700252.0,
       "opponents_total": 388000.0,
-      "supporters_count": 1,
+      "supporters_count": 2,
       "opponents_count": 2,
       "actors": [
         {
@@ -195,6 +195,12 @@
           "position": "opponent",
           "total": 188000.0,
           "campaign_id": 540
+        },
+        {
+          "name": "PLR.Les Libéraux-Radicaux, Bern",
+          "position": "supporter",
+          "total": 150252.0,
+          "campaign_id": 559
         },
         {
           "name": "Union Démocratique du Centre (UDC), Bern",
