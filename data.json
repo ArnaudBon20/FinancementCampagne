@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-07 22:14",
+  "lastUpdate": "2026-02-09 22:24",
   "nextVoteDate": "08.03.2026",
   "translations": {
     "fr": {
@@ -53,9 +53,9 @@
         "it": "Per una politica energetica e climatica equa: investire per la prosperità, il lavoro e l’ambiente (Iniziativa per un fondo per il clima)"
       },
       "date": "08.03.2026",
-      "supporters_total": 649000.0,
+      "supporters_total": 702880.0,
       "opponents_total": 1386630.0,
-      "supporters_count": 3,
+      "supporters_count": 4,
       "opponents_count": 1,
       "actors": [
         {
@@ -63,6 +63,12 @@
           "position": "opponent",
           "total": 1386630.0,
           "campaign_id": 550
+        },
+        {
+          "name": "Clima Now, Zürich",
+          "position": "supporter",
+          "total": 53880.0,
+          "campaign_id": 560
         },
         {
           "name": "Komitee Klimafonds-Initiative, Bern",
