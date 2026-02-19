@@ -1,6 +1,6 @@
 {
-  "lastUpdate": "2026-02-17 22:18",
-  "nextVoteDate": "08.03.2026",
+  "lastUpdate": "2026-02-19 22:19",
+  "nextVoteDate": "14.06.2026",
   "translations": {
     "fr": {
       "title": "Financement des campagnes",
@@ -31,6 +31,34 @@
     }
   },
   "votations": [
+    {
+      "id": 28,
+      "title": {
+        "fr": "Pas de Suisse à 10 millions ! (initiative pour la durabilité)",
+        "de": "Keine 10-Millionen-Schweiz! (Nachhaltigkeitsinitiative)",
+        "it": "No a una Svizzera da 10 milioni! (Iniziativa per la sostenibilità)"
+      },
+      "date": "14.06.2026",
+      "supporters_total": 0,
+      "opponents_total": 0,
+      "supporters_count": 0,
+      "opponents_count": 0,
+      "actors": []
+    },
+    {
+      "id": 29,
+      "title": {
+        "fr": "Modification du 26 septembre 2025 de la loi fédérale sur le service civil (LSC)",
+        "de": "Änderung vom 26. September 2025 des Bundesgesetzes über den zivilen Ersatzdienst (Zivildienstgesetz, ZDG)",
+        "it": "Modifica del 26 settembre 2025 della legge federale sul servizio civile sostitutivo (Legge sul servizio civile, LSC)"
+      },
+      "date": "14.06.2026",
+      "supporters_total": 0,
+      "opponents_total": 0,
+      "supporters_count": 0,
+      "opponents_count": 0,
+      "actors": []
+    },
     {
       "id": 23,
       "title": {
