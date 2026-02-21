@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-19 22:19",
+  "lastUpdate": "2026-02-21 22:11",
   "nextVoteDate": "14.06.2026",
   "translations": {
     "fr": {
@@ -127,15 +127,21 @@
       },
       "date": "08.03.2026",
       "supporters_total": 1887530.0,
-      "opponents_total": 3883228.17,
+      "opponents_total": 4012888.59,
       "supporters_count": 4,
-      "opponents_count": 8,
+      "opponents_count": 9,
       "actors": [
         {
           "name": "Allianz Pro Medienvielfalt, Bern",
           "position": "opponent",
           "total": 400099.5,
           "campaign_id": 552
+        },
+        {
+          "name": "Associazione Pro Servizio Pubblico Radiotelevisivo, Comano",
+          "position": "opponent",
+          "total": 129660.42,
+          "campaign_id": 561
         },
         {
           "name": "Conseil Suisse de la Musique CSM, Aarau",
