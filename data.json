@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-02-25 22:19",
+  "lastUpdate": "2026-02-27 22:12",
   "nextVoteDate": "14.06.2026",
   "translations": {
     "fr": {
@@ -127,9 +127,9 @@
       },
       "date": "08.03.2026",
       "supporters_total": 1887530.0,
-      "opponents_total": 4012888.59,
+      "opponents_total": 4092888.59,
       "supporters_count": 4,
-      "opponents_count": 9,
+      "opponents_count": 10,
       "actors": [
         {
           "name": "Allianz Pro Medienvielfalt, Bern",
@@ -186,6 +186,12 @@
           "campaign_id": 549
         },
         {
+          "name": "SRG SSR Svizra Rumantscha (SRG.R), Chur",
+          "position": "opponent",
+          "total": 80000.0,
+          "campaign_id": 563
+        },
+        {
           "name": "Stiftung für direkte Demokratie, Basel",
           "position": "opponent",
           "total": 150000.0,
@@ -220,10 +226,16 @@
       },
       "date": "08.03.2026",
       "supporters_total": 700252.0,
-      "opponents_total": 388000.0,
+      "opponents_total": 508000.0,
       "supporters_count": 2,
-      "opponents_count": 2,
+      "opponents_count": 3,
       "actors": [
+        {
+          "name": "IG Familie 3plus, Wolhusen",
+          "position": "opponent",
+          "total": 120000.0,
+          "campaign_id": 562
+        },
         {
           "name": "JA zur Individualbesteuerung, Bern",
           "position": "supporter",
