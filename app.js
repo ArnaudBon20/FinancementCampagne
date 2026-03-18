@@ -120,6 +120,9 @@ function updateLanguage(lang) {
   currentLang = lang;
   const t = TRANSLATIONS[lang];
   
+  console.log('Changing language to:', lang);
+  console.log('Cached data available:', !!cachedData);
+  
   document.getElementById('app-title').textContent = t.title;
   document.getElementById('vote-label').textContent = t.date_label;
   document.getElementById('loading-text').textContent = t.loading;
@@ -132,7 +135,10 @@ function updateLanguage(lang) {
   });
   
   if (cachedData) {
+    console.log('Re-rendering votations with language:', lang);
     renderVotations(cachedData);
+  } else {
+    console.log('No cached data available yet');
   }
   
   localStorage.setItem('preferredLanguage', lang);
