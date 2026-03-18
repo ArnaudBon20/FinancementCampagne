@@ -1,12 +1,12 @@
-const CACHE_NAME = 'financement-campagnes-v1';
+const CACHE_NAME = 'financement-campagnes-v2';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png'
+  './',
+  './index.html',
+  './styles.css',
+  './app.js',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -56,7 +56,7 @@ self.addEventListener('fetch', (event) => {
           
           return response;
         }).catch(() => {
-          return caches.match('/index.html');
+          return caches.match('./index.html');
         });
       })
   );
