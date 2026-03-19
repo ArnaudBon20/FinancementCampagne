@@ -1,7 +1,7 @@
 // Widget Financement des Campagnes - Version pour chargement dynamique
 // No special characters in comments
 
-const DATA_URL = "https://raw.githubusercontent.com/ArnaudBon20/FinancementCampagne/main/data.json";
+const DATA_URL = "https://raw.githubusercontent.com/aexil-234/FinancementCampagne/main/data.json";
 
 const TRANSLATIONS = {
   fr: {

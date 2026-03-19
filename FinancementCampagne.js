@@ -3,7 +3,7 @@
 // icon-color: red; icon-glyph: money-bill-wave;
 
 // Auto-update loader - Downloads latest widget from GitHub
-const WIDGET_URL = "https://raw.githubusercontent.com/ArnaudBon20/FinancementCampagne/main/widget.js";
+const WIDGET_URL = "https://raw.githubusercontent.com/aexil-234/FinancementCampagne/main/widget.js";
 
 async function loadAndRun() {
   let code = "";

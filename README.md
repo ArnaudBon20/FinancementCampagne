@@ -36,18 +36,18 @@ L'application s'adapte automatiquement à la langue du système :
 ### 📥 Installation
 
 #### Sur Android
-1. Ouvrez le lien dans Chrome : `https://arnaudbon20.github.io/FinancementCampagne/`
+1. Ouvrez le lien dans Chrome : `https://aexil-234.github.io/FinancementCampagne/`
 2. Appuyez sur le bouton **"Installer l'application"** ou
 3. Menu (⋮) > **"Installer l'application"** ou **"Ajouter à l'écran d'accueil"**
 
 #### Sur iPhone/iPad
-1. Ouvrez le lien dans Safari : `https://arnaudbon20.github.io/FinancementCampagne/`
+1. Ouvrez le lien dans Safari : `https://aexil-234.github.io/FinancementCampagne/`
 2. Appuyez sur le bouton de partage (□↑)
 3. Sélectionnez **"Sur l'écran d'accueil"**
 4. Confirmez l'installation
 
 #### Sur ordinateur (Chrome, Edge)
-1. Ouvrez le lien : `https://arnaudbon20.github.io/FinancementCampagne/`
+1. Ouvrez le lien : `https://aexil-234.github.io/FinancementCampagne/`
 2. Cliquez sur l'icône d'installation (⊕) dans la barre d'adresse
 3. Confirmez l'installation
 
@@ -64,7 +64,7 @@ L'application s'adapte automatiquement à la langue du système :
 1. **Télécharger le script**
    - Ouvrez ce lien dans Safari sur votre iPhone :
    ```
-   https://raw.githubusercontent.com/ArnaudBon20/FinancementCampagne/main/FinancementCampagne.js
+   https://raw.githubusercontent.com/aexil-234/FinancementCampagne/main/FinancementCampagne.js
    ```
    - Copiez tout le contenu
 
