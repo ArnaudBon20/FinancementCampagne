@@ -76,6 +76,14 @@ function getShortTitle(title) {
   const match = title.match(/\(([^)]+)\)\s*$/);
   if (match) {
     let result = match[1];
+    // Si c'est juste un acronyme court (ex. "LSC"), enrichir avec le nom de la loi
+    if (/^[A-Z]{2,6}$/.test(result)) {
+      const lawMatch = title.match(/loi\s+(?:fédérale\s+)?sur\s+(.+?)\s*\([^)]+\)\s*$/i);
+      if (lawMatch) {
+        const subject = lawMatch[1].trim().replace(/^(?:la\s+|le\s+|les\s+|l['`']?\s*)/i, '');
+        result = 'Loi sur ' + subject + ', ' + result;
+      }
+    }
     result = result.replace(/^initiative/i, "Initiative");
     return result;
   }
