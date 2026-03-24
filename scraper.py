@@ -10,6 +10,8 @@ import requests
 from datetime import datetime
 
 OUTPUT_FILE = "data.json"
+HISTORY_FILE = "history.json"
+MAX_HISTORY_ENTRIES = 50
 BASE_API_URL = "https://politikfinanzierung.efk.admin.ch/api/frontend/v1"
 
 # Titres multilingues
@@ -229,9 +231,94 @@ def fetch_multilingual_titles(votation_id):
     return titles
 
 
+def load_history():
+    """Charge l'historique existant ou retourne une liste vide."""
+    try:
+        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []
+
+
+def load_previous_data():
+    """Charge les données précédentes depuis data.json."""
+    try:
+        with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def compute_changes(previous_data, new_votations):
+    """Compare les nouvelles données avec les anciennes et retourne les deltas."""
+    changes = []
+
+    prev_votations = {v["id"]: v for v in previous_data.get("votations", [])}
+
+    for vot in new_votations:
+        vot_id = vot["id"]
+        prev = prev_votations.get(vot_id)
+
+        if prev is None:
+            # Nouvelle votation apparue
+            if vot["supporters_total"] > 0 or vot["opponents_total"] > 0:
+                changes.append({
+                    "votation_id": vot_id,
+                    "title": vot["title"],
+                    "date": vot["date"],
+                    "supporters_before": 0,
+                    "supporters_after": vot["supporters_total"],
+                    "opponents_before": 0,
+                    "opponents_after": vot["opponents_total"],
+                    "new_entry": True
+                })
+        else:
+            sup_diff = vot["supporters_total"] - prev["supporters_total"]
+            opp_diff = vot["opponents_total"] - prev["opponents_total"]
+            if sup_diff != 0 or opp_diff != 0:
+                changes.append({
+                    "votation_id": vot_id,
+                    "title": vot["title"],
+                    "date": vot["date"],
+                    "supporters_before": prev["supporters_total"],
+                    "supporters_after": vot["supporters_total"],
+                    "opponents_before": prev["opponents_total"],
+                    "opponents_after": vot["opponents_total"],
+                    "new_entry": False
+                })
+
+    return changes
+
+
+def update_history(changes):
+    """Ajoute une entrée à history.json si des changements ont eu lieu."""
+    if not changes:
+        print("Aucun changement détecté, history.json non modifié.")
+        return
+
+    history = load_history()
+
+    entry = {
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "changes": changes
+    }
+    history.insert(0, entry)
+
+    # Limiter la taille de l'historique
+    history = history[:MAX_HISTORY_ENTRIES]
+
+    with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=2)
+
+    print(f"history.json mis à jour : {len(changes)} changement(s) enregistré(s).")
+
+
 def main():
     print("Démarrage de la récupération des données de financement...")
-    
+
+    # Charger les données précédentes avant de les écraser
+    previous_data = load_previous_data()
+
     # Récupérer les données en français (langue de base)
     tree_roots = get_campaign_financings("fr")
     print(f"Récupéré {len(tree_roots)} entrées depuis l'API")
@@ -248,6 +335,12 @@ def main():
         print(f"  - {votation['date']}: {votation['title'].get('fr', 'N/A')}")
         print(f"    Soutiens: CHF {votation['supporters_total']:,.0f} ({votation['supporters_count']} acteurs)")
         print(f"    Opposants: CHF {votation['opponents_total']:,.0f} ({votation['opponents_count']} acteurs)")
+
+    # Calculer les changements par rapport aux données précédentes
+    changes = compute_changes(previous_data, votations)
+
+    # Mettre à jour l'historique si des changements ont eu lieu
+    update_history(changes)
     
     # Déterminer la date de la prochaine votation
     if votations:

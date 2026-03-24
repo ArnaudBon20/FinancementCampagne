@@ -1,4 +1,5 @@
 const DATA_URL = "https://raw.githubusercontent.com/aexil-234/FinancementCampagne/main/data.json";
+const HISTORY_URL = "https://raw.githubusercontent.com/aexil-234/FinancementCampagne/main/history.json";
 
 const TRANSLATIONS = {
   fr: {
@@ -50,6 +51,7 @@ const TRANSLATIONS = {
 
 let currentLang = 'fr';
 let cachedData = null;
+let cachedHistory = null;
 let deferredPrompt = null;
 
 function getSystemLanguage() {
@@ -162,6 +164,34 @@ async function fetchData() {
   }
 }
 
+async function fetchHistory() {
+  try {
+    const response = await fetch(HISTORY_URL);
+    if (!response.ok) return [];
+    const history = await response.json();
+    cachedHistory = history;
+    return history;
+  } catch (error) {
+    return [];
+  }
+}
+
+function getLastChanges(history) {
+  if (!history || history.length === 0) return {};
+  const latest = history[0];
+  const map = {};
+  (latest.changes || []).forEach(c => {
+    map[c.votation_id] = c;
+  });
+  return map;
+}
+
+function formatDeltaBadge(delta) {
+  if (delta === 0) return null;
+  const sign = delta > 0 ? '+' : '';
+  return `${sign}CHF ${formatCHF(Math.abs(delta))}`;
+}
+
 function renderVotations(data) {
   const container = document.getElementById('votations-container');
   const t = TRANSLATIONS[currentLang];
@@ -211,6 +241,13 @@ function renderVotations(data) {
       window.open(campaignUrl, '_blank');
     });
     
+    const lastChanges = getLastChanges(cachedHistory);
+    const change = lastChanges[votation.id] || null;
+    const supDelta = change ? change.supporters_after - change.supporters_before : 0;
+    const oppDelta = change ? change.opponents_after - change.opponents_before : 0;
+    const supBadge = formatDeltaBadge(supDelta);
+    const oppBadge = formatDeltaBadge(oppDelta);
+
     card.innerHTML = `
       <div class="votation-title">${title}</div>
       <div class="amounts-container">
@@ -219,8 +256,11 @@ function renderVotations(data) {
             <span>✓</span>
             <span>${t.supporters}</span>
           </span>
-          <span class="amount-value" style="color: var(--color-supporters)">
-            CHF ${formatCHF(votation.supporters_total)}
+          <span style="display:flex;align-items:center;gap:8px">
+            <span class="amount-value" style="color: var(--color-supporters)">
+              CHF ${formatCHF(votation.supporters_total)}
+            </span>
+            ${supBadge ? `<span class="delta-badge ${supDelta > 0 ? 'delta-up' : 'delta-down'}">${supDelta > 0 ? '↑' : '↓'} ${supBadge}</span>` : ''}
           </span>
         </div>
         <div class="amount-row">
@@ -228,8 +268,11 @@ function renderVotations(data) {
             <span>✗</span>
             <span>${t.opponents}</span>
           </span>
-          <span class="amount-value" style="color: var(--color-opponents)">
-            CHF ${formatCHF(votation.opponents_total)}
+          <span style="display:flex;align-items:center;gap:8px">
+            <span class="amount-value" style="color: var(--color-opponents)">
+              CHF ${formatCHF(votation.opponents_total)}
+            </span>
+            ${oppBadge ? `<span class="delta-badge ${oppDelta > 0 ? 'delta-up' : 'delta-down'}">${oppDelta > 0 ? '↑' : '↓'} ${oppBadge}</span>` : ''}
           </span>
         </div>
       </div>
@@ -276,7 +319,7 @@ async function loadData() {
   `;
   
   try {
-    const data = await fetchData();
+    const [data] = await Promise.all([fetchData(), fetchHistory()]);
     renderVotations(data);
   } catch (error) {
     showError();

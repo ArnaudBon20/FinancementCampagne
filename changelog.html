@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Historique des mises à jour - Financement des campagnes">
+    <meta name="theme-color" content="#1C1C1E">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <title>📊 Historique des mises à jour</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <style>
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        .back-btn:hover {
+            opacity: 0.8;
+        }
+        .changelog-entry {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .entry-timestamp {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.3px;
+        }
+        .entry-count {
+            font-size: 11px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+        .change-item {
+            padding: 10px 0;
+            border-top: 1px solid var(--color-separator);
+        }
+        .change-item:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+        .change-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .change-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .change-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+        .change-side {
+            font-weight: 600;
+            min-width: 50px;
+            font-size: 12px;
+        }
+        .change-side.supporters { color: var(--color-supporters); }
+        .change-side.opponents  { color: var(--color-opponents); }
+        .change-before {
+            color: var(--text-secondary);
+        }
+        .change-arrow {
+            color: var(--text-tertiary);
+            font-size: 11px;
+        }
+        .change-after {
+            font-weight: 700;
+        }
+        .change-delta {
+            margin-left: auto;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 6px;
+        }
+        .change-delta.positive {
+            background: rgba(52, 199, 89, 0.15);
+            color: var(--color-supporters);
+        }
+        .change-delta.negative {
+            background: rgba(255, 59, 48, 0.15);
+            color: var(--color-opponents);
+        }
+        .change-delta.neutral {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+        }
+        .no-history {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 60px 20px;
+            font-size: 15px;
+        }
+        .no-history .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        .lang-selector-row {
+            display: flex;
+            gap: 8px;
+        }
+        .new-badge {
+            font-size: 10px;
+            background: var(--color-accent);
+            color: white;
+            padding: 1px 6px;
+            border-radius: 6px;
+            font-weight: 700;
+            vertical-align: middle;
+            margin-left: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>📊 <span id="page-title">Historique</span></h1>
+                <div class="language-selector lang-selector-row">
+                    <button class="lang-btn active" data-lang="fr">FR</button>
+                    <button class="lang-btn" data-lang="de">DE</button>
+                    <button class="lang-btn" data-lang="it">IT</button>
+                </div>
+            </div>
+            <a href="index.html" class="back-btn">← <span id="back-label">Retour</span></a>
+        </header>
+
+        <main id="changelog-container">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p id="loading-text">Chargement...</p>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="source">
+                    <span>Source: <a href="https://politikfinanzierung.efk.admin.ch" target="_blank" rel="noopener" id="source-link">CDF</a></span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const HISTORY_URL = "https://raw.githubusercontent.com/aexil-234/FinancementCampagne/main/history.json";
+
+        const TRANSLATIONS = {
+            fr: {
+                page_title: "Historique",
+                back: "Retour",
+                loading: "Chargement...",
+                no_history: "Aucune mise à jour enregistrée pour l'instant.",
+                no_history_sub: "Les changements apparaîtront ici dès la prochaine mise à jour automatique.",
+                changes: "changement(s)",
+                supporters: "Pour",
+                opponents: "Contre",
+                source: "CDF",
+                new_entry: "Nouveau"
+            },
+            de: {
+                page_title: "Verlauf",
+                back: "Zurück",
+                loading: "Laden...",
+                no_history: "Noch keine Aktualisierungen aufgezeichnet.",
+                no_history_sub: "Änderungen erscheinen hier nach der nächsten automatischen Aktualisierung.",
+                changes: "Änderung(en)",
+                supporters: "Ja",
+                opponents: "Nein",
+                source: "EFK",
+                new_entry: "Neu"
+            },
+            it: {
+                page_title: "Cronologia",
+                back: "Indietro",
+                loading: "Caricamento...",
+                no_history: "Nessun aggiornamento registrato.",
+                no_history_sub: "I cambiamenti appariranno qui dopo il prossimo aggiornamento automatico.",
+                changes: "modifica/e",
+                supporters: "Sì",
+                opponents: "No",
+                source: "CDF",
+                new_entry: "Nuovo"
+            }
+        };
+
+        let currentLang = localStorage.getItem('preferredLanguage') || getBrowserLang();
+        let historyData = [];
+
+        function getBrowserLang() {
+            const l = (navigator.language || 'fr').toLowerCase();
+            if (l.startsWith('de')) return 'de';
+            if (l.startsWith('it')) return 'it';
+            return 'fr';
+        }
+
+        function formatCHF(amount) {
+            if (amount >= 1000000) return (amount / 1000000).toFixed(1).replace('.', ',') + ' M';
+            if (amount >= 1000) return (amount / 1000).toFixed(0) + ' k';
+            return amount.toFixed(0);
+        }
+
+        function formatDelta(delta) {
+            if (delta === 0) return null;
+            const sign = delta > 0 ? '+' : '';
+            return `${sign}CHF ${formatCHF(Math.abs(delta))}${delta > 0 ? '' : ''}`;
+        }
+
+        function formatTimestamp(ts) {
+            if (!ts) return '-';
+            const parts = ts.split(' ');
+            if (parts.length < 2) return ts;
+            const [date, time] = parts;
+            const [y, m, d] = date.split('-');
+            return `${d}.${m}.${y} – ${time}`;
+        }
+
+        function getTitle(titleObj) {
+            if (!titleObj) return 'N/A';
+            if (typeof titleObj === 'string') return titleObj;
+            return titleObj[currentLang] || titleObj.fr || 'N/A';
+        }
+
+        function renderChangelog() {
+            const t = TRANSLATIONS[currentLang];
+            const container = document.getElementById('changelog-container');
+
+            document.getElementById('page-title').textContent = t.page_title;
+            document.getElementById('back-label').textContent = t.back;
+            document.getElementById('source-link').textContent = t.source;
+
+            if (!historyData || historyData.length === 0) {
+                container.innerHTML = `
+                    <div class="no-history">
+                        <div class="icon">📭</div>
+                        <p>${t.no_history}</p>
+                        <p style="font-size:13px;margin-top:8px;opacity:0.7">${t.no_history_sub}</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = '';
+
+            historyData.forEach(entry => {
+                const el = document.createElement('div');
+                el.className = 'changelog-entry';
+
+                const changesHTML = entry.changes.map(change => {
+                    const supDelta = change.supporters_after - change.supporters_before;
+                    const oppDelta = change.opponents_after - change.opponents_before;
+
+                    const supDeltaStr = formatDelta(supDelta);
+                    const oppDeltaStr = formatDelta(oppDelta);
+
+                    const newBadge = change.new_entry
+                        ? `<span class="new-badge">${t.new_entry}</span>`
+                        : '';
+
+                    let rows = '';
+
+                    if (supDelta !== 0 || change.supporters_after > 0) {
+                        const cls = supDelta > 0 ? 'positive' : supDelta < 0 ? 'negative' : 'neutral';
+                        rows += `
+                            <div class="change-row">
+                                <span class="change-side supporters">✓ ${t.supporters}</span>
+                                <span class="change-before">CHF ${formatCHF(change.supporters_before)}</span>
+                                <span class="change-arrow">→</span>
+                                <span class="change-after" style="color:var(--color-supporters)">CHF ${formatCHF(change.supporters_after)}</span>
+                                ${supDeltaStr ? `<span class="change-delta ${cls}">${supDelta > 0 ? '+' : ''}CHF ${formatCHF(Math.abs(supDelta))}</span>` : ''}
+                            </div>`;
+                    }
+
+                    if (oppDelta !== 0 || change.opponents_after > 0) {
+                        const cls = oppDelta > 0 ? 'positive' : oppDelta < 0 ? 'negative' : 'neutral';
+                        rows += `
+                            <div class="change-row">
+                                <span class="change-side opponents">✗ ${t.opponents}</span>
+                                <span class="change-before">CHF ${formatCHF(change.opponents_before)}</span>
+                                <span class="change-arrow">→</span>
+                                <span class="change-after" style="color:var(--color-opponents)">CHF ${formatCHF(change.opponents_after)}</span>
+                                ${oppDeltaStr ? `<span class="change-delta ${cls}">${oppDelta > 0 ? '+' : ''}CHF ${formatCHF(Math.abs(oppDelta))}</span>` : ''}
+                            </div>`;
+                    }
+
+                    return `
+                        <div class="change-item">
+                            <div class="change-title">${getTitle(change.title)}${newBadge}</div>
+                            <div class="change-rows">${rows}</div>
+                        </div>`;
+                }).join('');
+
+                el.innerHTML = `
+                    <div class="entry-header">
+                        <span class="entry-timestamp">${formatTimestamp(entry.timestamp)}</span>
+                        <span class="entry-count">${entry.changes.length} ${t.changes}</span>
+                    </div>
+                    ${changesHTML}`;
+
+                container.appendChild(el);
+            });
+        }
+
+        async function loadHistory() {
+            try {
+                const res = await fetch(HISTORY_URL);
+                if (!res.ok) throw new Error('Network error');
+                historyData = await res.json();
+            } catch (e) {
+                historyData = [];
+            }
+            renderChangelog();
+        }
+
+        function setLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            renderChangelog();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setLang(currentLang);
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.addEventListener('click', () => setLang(btn.dataset.lang));
+            });
+            loadHistory();
+        });
+    </script>
+</body>
+</html>
