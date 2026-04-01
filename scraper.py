@@ -249,6 +249,28 @@ def load_previous_data():
         return {}
 
 
+def find_changed_actors(prev_actors, new_actors):
+    """Identifie les acteurs dont la déclaration a changé ou qui sont nouveaux."""
+    prev_map = {a["campaign_id"]: a for a in prev_actors}
+    changed = []
+    for actor in new_actors:
+        prev_actor = prev_map.get(actor["campaign_id"])
+        if prev_actor is None:
+            if actor["total"] > 0:
+                changed.append({
+                    "name": actor["name"],
+                    "position": actor["position"],
+                    "amount": actor["total"]
+                })
+        elif actor["total"] != prev_actor["total"]:
+            changed.append({
+                "name": actor["name"],
+                "position": actor["position"],
+                "amount": actor["total"]
+            })
+    return changed
+
+
 def compute_changes(previous_data, new_votations):
     """Compare les nouvelles données avec les anciennes et retourne les deltas."""
     changes = []
@@ -262,6 +284,7 @@ def compute_changes(previous_data, new_votations):
         if prev is None:
             # Nouvelle votation apparue
             if vot["supporters_total"] > 0 or vot["opponents_total"] > 0:
+                changed_actors = find_changed_actors([], vot.get("actors", []))
                 changes.append({
                     "votation_id": vot_id,
                     "title": vot["title"],
@@ -270,12 +293,16 @@ def compute_changes(previous_data, new_votations):
                     "supporters_after": vot["supporters_total"],
                     "opponents_before": 0,
                     "opponents_after": vot["opponents_total"],
-                    "new_entry": True
+                    "new_entry": True,
+                    "changed_actors": changed_actors
                 })
         else:
             sup_diff = vot["supporters_total"] - prev["supporters_total"]
             opp_diff = vot["opponents_total"] - prev["opponents_total"]
             if sup_diff != 0 or opp_diff != 0:
+                changed_actors = find_changed_actors(
+                    prev.get("actors", []), vot.get("actors", [])
+                )
                 changes.append({
                     "votation_id": vot_id,
                     "title": vot["title"],
@@ -284,7 +311,8 @@ def compute_changes(previous_data, new_votations):
                     "supporters_after": vot["supporters_total"],
                     "opponents_before": prev["opponents_total"],
                     "opponents_after": vot["opponents_total"],
-                    "new_entry": False
+                    "new_entry": False,
+                    "changed_actors": changed_actors
                 })
 
     return changes
