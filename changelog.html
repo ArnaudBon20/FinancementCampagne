@@ -143,14 +143,28 @@
             margin-left: 6px;
         }
         .change-actors {
+            margin-top: 4px;
+            padding-left: 58px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .actor-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-size: 11px;
             color: var(--text-secondary);
-            margin-top: 3px;
-            padding-left: 58px;
             line-height: 1.4;
         }
-        .change-actors .actor-name {
-            opacity: 0.8;
+        .actor-line .actor-name {
+            opacity: 0.85;
+        }
+        .actor-line .actor-amount {
+            font-weight: 600;
+            opacity: 0.9;
+            white-space: nowrap;
+            margin-left: 12px;
         }
     </style>
 </head>
@@ -318,7 +332,7 @@
                                 ${supDeltaStr ? `<span class="change-delta ${cls}">${supDelta > 0 ? '+' : ''}CHF ${formatCHF(Math.abs(supDelta))}</span>` : ''}
                             </div>`;
                         if (supActors.length > 0) {
-                            rows += `<div class="change-actors">${t.declared_by} : ${supActors.map(a => `<span class="actor-name">${a.name}</span>`).join(', ')}</div>`;
+                            rows += `<div class="change-actors">${supActors.map(a => `<div class="actor-line"><span class="actor-name">${a.name}</span><span class="actor-amount">CHF ${formatCHF(a.amount)}</span></div>`).join('')}</div>`;
                         }
                     }
 
@@ -333,7 +347,7 @@
                                 ${oppDeltaStr ? `<span class="change-delta ${cls}">${oppDelta > 0 ? '+' : ''}CHF ${formatCHF(Math.abs(oppDelta))}</span>` : ''}
                             </div>`;
                         if (oppActors.length > 0) {
-                            rows += `<div class="change-actors">${t.declared_by} : ${oppActors.map(a => `<span class="actor-name">${a.name}</span>`).join(', ')}</div>`;
+                            rows += `<div class="change-actors">${oppActors.map(a => `<div class="actor-line"><span class="actor-name">${a.name}</span><span class="actor-amount">CHF ${formatCHF(a.amount)}</span></div>`).join('')}</div>`;
                         }
                     }
 
