@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-04-06 22:05",
+  "lastUpdate": "2026-04-07 11:31",
   "nextVoteDate": "14.06.2026",
   "translations": {
     "fr": {
@@ -60,18 +60,11 @@
         "it": "Modifica del 26 settembre 2025 della legge federale sul servizio civile sostitutivo (Legge sul servizio civile, LSC)"
       },
       "date": "14.06.2026",
-      "supporters_total": 300000.0,
+      "supporters_total": 0,
       "opponents_total": 0,
-      "supporters_count": 1,
+      "supporters_count": 0,
       "opponents_count": 0,
-      "actors": [
-        {
-          "name": "Allianz Sicherheit Schweiz, Zürich",
-          "position": "supporter",
-          "total": 300000.0,
-          "campaign_id": 567
-        }
-      ]
+      "actors": []
     }
   ]
 }
