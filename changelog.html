@@ -265,6 +265,19 @@
             return `${sign}CHF ${formatCHF(Math.abs(delta))}${delta > 0 ? '' : ''}`;
         }
 
+        function isRecentEntry(timestamp, maxDays) {
+            if (!timestamp) return false;
+            const parts = timestamp.split(' ');
+            if (parts.length < 2) return false;
+            const [date, time] = parts;
+            const [y, m, d] = date.split('-');
+            const [hh, mm] = time.split(':');
+            const entryDate = new Date(parseInt(y), parseInt(m) - 1, parseInt(d), parseInt(hh), parseInt(mm));
+            const now = new Date();
+            const diffMs = now - entryDate;
+            return diffMs < maxDays * 24 * 60 * 60 * 1000;
+        }
+
         function formatTimestamp(ts) {
             if (!ts) return '-';
             const parts = ts.split(' ');
@@ -304,6 +317,8 @@
                 const el = document.createElement('div');
                 el.className = 'changelog-entry';
 
+                const entryIsRecent = isRecentEntry(entry.timestamp, 2);
+
                 const changesHTML = entry.changes.map(change => {
                     const supDelta = change.supporters_after - change.supporters_before;
                     const oppDelta = change.opponents_after - change.opponents_before;
@@ -311,7 +326,7 @@
                     const supDeltaStr = formatDelta(supDelta);
                     const oppDeltaStr = formatDelta(oppDelta);
 
-                    const newBadge = change.new_entry
+                    const newBadge = (change.new_entry && entryIsRecent)
                         ? `<span class="new-badge">${t.new_entry}</span>`
                         : '';
 

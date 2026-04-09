@@ -184,9 +184,23 @@ async function fetchHistory() {
   }
 }
 
+function isRecentEntry(timestamp, maxDays) {
+  if (!timestamp) return false;
+  const parts = timestamp.split(' ');
+  if (parts.length < 2) return false;
+  const [date, time] = parts;
+  const [y, m, d] = date.split('-');
+  const [hh, mm] = time.split(':');
+  const entryDate = new Date(parseInt(y), parseInt(m) - 1, parseInt(d), parseInt(hh), parseInt(mm));
+  const now = new Date();
+  const diffMs = now - entryDate;
+  return diffMs < maxDays * 24 * 60 * 60 * 1000;
+}
+
 function getLastChanges(history) {
   if (!history || history.length === 0) return {};
   const latest = history[0];
+  if (!isRecentEntry(latest.timestamp, 2)) return {};
   const map = {};
   (latest.changes || []).forEach(c => {
     map[c.votation_id] = c;
