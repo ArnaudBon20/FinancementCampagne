@@ -1,5 +1,41 @@
 [
   {
+    "timestamp": "2026-04-28 10:22",
+    "changes": [
+      {
+        "votation_id": 28,
+        "title": {
+          "fr": "Pas de Suisse à 10 millions ! (initiative pour la durabilité)",
+          "de": "Keine 10-Millionen-Schweiz! (Nachhaltigkeitsinitiative)",
+          "it": "No a una Svizzera da 10 milioni! (Iniziativa per la sostenibilità)"
+        },
+        "date": "14.06.2026",
+        "supporters_before": 500000.0,
+        "supporters_after": 500000.0,
+        "opponents_before": 235000.0,
+        "opponents_after": 570000.0,
+        "new_entry": false,
+        "changed_actors": [
+          {
+            "name": "ASLOCA Association suisse des locataires, Berne",
+            "position": "opponent",
+            "amount": 100000.0
+          },
+          {
+            "name": "GastroSuisse, Zürich",
+            "position": "opponent",
+            "amount": 135000.0
+          },
+          {
+            "name": "Travail.Suisse, Bern",
+            "position": "opponent",
+            "amount": 100000.0
+          }
+        ]
+      }
+    ]
+  },
+  {
     "timestamp": "2026-04-27 21:54",
     "changes": [
       {

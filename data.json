@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-04-27 21:54",
+  "lastUpdate": "2026-04-28 10:22",
   "nextVoteDate": "14.06.2026",
   "translations": {
     "fr": {
@@ -40,10 +40,22 @@
       },
       "date": "14.06.2026",
       "supporters_total": 500000.0,
-      "opponents_total": 235000.0,
+      "opponents_total": 570000.0,
       "supporters_count": 1,
-      "opponents_count": 2,
+      "opponents_count": 5,
       "actors": [
+        {
+          "name": "ASLOCA Association suisse des locataires, Berne",
+          "position": "opponent",
+          "total": 100000.0,
+          "campaign_id": 576
+        },
+        {
+          "name": "GastroSuisse, Zürich",
+          "position": "opponent",
+          "total": 135000.0,
+          "campaign_id": 574
+        },
         {
           "name": "Industrie und Handelskammer St. Gallen-Appenzell, St. Gallen",
           "position": "opponent",
@@ -61,6 +73,12 @@
           "position": "supporter",
           "total": 500000.0,
           "campaign_id": 570
+        },
+        {
+          "name": "Travail.Suisse, Bern",
+          "position": "opponent",
+          "total": 100000.0,
+          "campaign_id": 568
         }
       ]
     },
