@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-04-30 10:12",
+  "lastUpdate": "2026-04-30 15:11",
   "nextVoteDate": "14.06.2026",
   "translations": {
     "fr": {
@@ -40,15 +40,27 @@
       },
       "date": "14.06.2026",
       "supporters_total": 500000.0,
-      "opponents_total": 570000.0,
+      "opponents_total": 3282400.0,
       "supporters_count": 1,
-      "opponents_count": 5,
+      "opponents_count": 9,
       "actors": [
+        {
+          "name": "Allianz für eine funktionierende Schweiz, Bern",
+          "position": "opponent",
+          "total": 127000.0,
+          "campaign_id": 571
+        },
         {
           "name": "ASLOCA Association suisse des locataires, Berne",
           "position": "opponent",
           "total": 100000.0,
           "campaign_id": 576
+        },
+        {
+          "name": "Comité du tourisme, Berne",
+          "position": "opponent",
+          "total": 130000.0,
+          "campaign_id": 573
         },
         {
           "name": "GastroSuisse, Zürich",
@@ -75,10 +87,22 @@
           "campaign_id": 570
         },
         {
+          "name": "Sozialdemokratische Partei der Schweiz, Bern",
+          "position": "opponent",
+          "total": 1630000.0,
+          "campaign_id": 580
+        },
+        {
           "name": "Travail.Suisse, Bern",
           "position": "opponent",
           "total": 100000.0,
           "campaign_id": 568
+        },
+        {
+          "name": "Union syndicale suisse (USS), Berne",
+          "position": "opponent",
+          "total": 825400.0,
+          "campaign_id": 569
         }
       ]
     },
@@ -91,15 +115,21 @@
       },
       "date": "14.06.2026",
       "supporters_total": 300000.0,
-      "opponents_total": 0,
+      "opponents_total": 247000.0,
       "supporters_count": 1,
-      "opponents_count": 0,
+      "opponents_count": 1,
       "actors": [
         {
           "name": "Allianz Sicherheit Schweiz, Zürich",
           "position": "supporter",
           "total": 300000.0,
           "campaign_id": 567
+        },
+        {
+          "name": "Sozialdemokratische Partei der Schweiz, Bern",
+          "position": "opponent",
+          "total": 247000.0,
+          "campaign_id": 581
         }
       ]
     }

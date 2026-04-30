@@ -1,5 +1,67 @@
 [
   {
+    "timestamp": "2026-04-30 15:11",
+    "changes": [
+      {
+        "votation_id": 28,
+        "title": {
+          "fr": "Pas de Suisse à 10 millions ! (initiative pour la durabilité)",
+          "de": "Keine 10-Millionen-Schweiz! (Nachhaltigkeitsinitiative)",
+          "it": "No a una Svizzera da 10 milioni! (Iniziativa per la sostenibilità)"
+        },
+        "date": "14.06.2026",
+        "supporters_before": 500000.0,
+        "supporters_after": 500000.0,
+        "opponents_before": 570000.0,
+        "opponents_after": 3282400.0,
+        "new_entry": false,
+        "changed_actors": [
+          {
+            "name": "Allianz für eine funktionierende Schweiz, Bern",
+            "position": "opponent",
+            "amount": 127000.0
+          },
+          {
+            "name": "Comité du tourisme, Berne",
+            "position": "opponent",
+            "amount": 130000.0
+          },
+          {
+            "name": "Sozialdemokratische Partei der Schweiz, Bern",
+            "position": "opponent",
+            "amount": 1630000.0
+          },
+          {
+            "name": "Union syndicale suisse (USS), Berne",
+            "position": "opponent",
+            "amount": 825400.0
+          }
+        ]
+      },
+      {
+        "votation_id": 29,
+        "title": {
+          "fr": "Modification du 26 septembre 2025 de la loi fédérale sur le service civil (LSC)",
+          "de": "Änderung vom 26. September 2025 des Bundesgesetzes über den zivilen Ersatzdienst (Zivildienstgesetz, ZDG)",
+          "it": "Modifica del 26 settembre 2025 della legge federale sul servizio civile sostitutivo (Legge sul servizio civile, LSC)"
+        },
+        "date": "14.06.2026",
+        "supporters_before": 300000.0,
+        "supporters_after": 300000.0,
+        "opponents_before": 0,
+        "opponents_after": 247000.0,
+        "new_entry": false,
+        "changed_actors": [
+          {
+            "name": "Sozialdemokratische Partei der Schweiz, Bern",
+            "position": "opponent",
+            "amount": 247000.0
+          }
+        ]
+      }
+    ]
+  },
+  {
     "timestamp": "2026-04-28 10:22",
     "changes": [
       {
