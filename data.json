@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-05-05 10:08",
+  "lastUpdate": "2026-05-05 21:58",
   "nextVoteDate": "14.06.2026",
   "translations": {
     "fr": {
@@ -39,11 +39,17 @@
         "it": "No a una Svizzera da 10 milioni! (Iniziativa per la sostenibilità)"
       },
       "date": "14.06.2026",
-      "supporters_total": 500000.0,
-      "opponents_total": 3382400.0,
-      "supporters_count": 1,
-      "opponents_count": 10,
+      "supporters_total": 6412500.0,
+      "opponents_total": 8963087.0,
+      "supporters_count": 3,
+      "opponents_count": 14,
       "actors": [
+        {
+          "name": "Alliance « NON à l'initiative du chaos », Berne",
+          "position": "opponent",
+          "total": 4965187.0,
+          "campaign_id": 578
+        },
         {
           "name": "Allianz für eine funktionierende Schweiz, Bern",
           "position": "opponent",
@@ -69,10 +75,22 @@
           "campaign_id": 574
         },
         {
+          "name": "IG Nachhaltigkeitsinitiative, Dübendorf",
+          "position": "supporter",
+          "total": 5861000.0,
+          "campaign_id": 579
+        },
+        {
           "name": "Industrie und Handelskammer St. Gallen-Appenzell, St. Gallen",
           "position": "opponent",
           "total": 60000.0,
           "campaign_id": 565
+        },
+        {
+          "name": "Jeune Union démocratique du centre, Oberwil im Simmental",
+          "position": "supporter",
+          "total": 51500.0,
+          "campaign_id": 585
         },
         {
           "name": "Le Centre, Bern",
@@ -87,6 +105,18 @@
           "campaign_id": 575
         },
         {
+          "name": "Organisation suisse d'aide aux réfugiés OSAR, Berne",
+          "position": "opponent",
+          "total": 320000.0,
+          "campaign_id": 584
+        },
+        {
+          "name": "PLR.Les Libéraux-Radicaux, Bern",
+          "position": "opponent",
+          "total": 130000.0,
+          "campaign_id": 577
+        },
+        {
           "name": "Schweizerische Volkspartei des Kantons Zürich, Dübendorf",
           "position": "supporter",
           "total": 500000.0,
@@ -97,6 +127,12 @@
           "position": "opponent",
           "total": 1630000.0,
           "campaign_id": 580
+        },
+        {
+          "name": "Syndicat Unia, Berne",
+          "position": "opponent",
+          "total": 165500.0,
+          "campaign_id": 572
         },
         {
           "name": "Travail.Suisse, Bern",
@@ -121,15 +157,21 @@
       },
       "date": "14.06.2026",
       "supporters_total": 300000.0,
-      "opponents_total": 247000.0,
+      "opponents_total": 320174.0,
       "supporters_count": 1,
-      "opponents_count": 1,
+      "opponents_count": 2,
       "actors": [
         {
           "name": "Allianz Sicherheit Schweiz, Zürich",
           "position": "supporter",
           "total": 300000.0,
           "campaign_id": 567
+        },
+        {
+          "name": "Allianz Zivildienstgesetz-nein, Bern",
+          "position": "opponent",
+          "total": 73174.0,
+          "campaign_id": 583
         },
         {
           "name": "Sozialdemokratische Partei der Schweiz, Bern",
