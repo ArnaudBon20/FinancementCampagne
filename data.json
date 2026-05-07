@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-05-06 21:54",
+  "lastUpdate": "2026-05-07 10:31",
   "nextVoteDate": "14.06.2026",
   "translations": {
     "fr": {
@@ -40,21 +40,21 @@
       },
       "date": "14.06.2026",
       "supporters_total": 6412500.0,
-      "opponents_total": 8963087.0,
+      "opponents_total": 8863087.0,
       "supporters_count": 3,
       "opponents_count": 14,
       "actors": [
         {
-          "name": "Alliance « NON à l'initiative du chaos », Berne",
-          "position": "opponent",
-          "total": 4965187.0,
-          "campaign_id": 578
-        },
-        {
-          "name": "Allianz für eine funktionierende Schweiz, Bern",
+          "name": "Alliance pour une Suisse qui fonctionne, Bern",
           "position": "opponent",
           "total": 127000.0,
           "campaign_id": 571
+        },
+        {
+          "name": "Alliance « NON à l'initiative du chaos », Berne",
+          "position": "opponent",
+          "total": 4865187.0,
+          "campaign_id": 578
         },
         {
           "name": "ASLOCA Association suisse des locataires, Berne",
