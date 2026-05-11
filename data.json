@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-05-11 11:31",
+  "lastUpdate": "2026-05-11 15:56",
   "nextVoteDate": "14.06.2026",
   "translations": {
     "fr": {
@@ -39,7 +39,7 @@
         "it": "No a una Svizzera da 10 milioni! (Iniziativa per la sostenibilità)"
       },
       "date": "14.06.2026",
-      "supporters_total": 6412500.0,
+      "supporters_total": 6442500.0,
       "opponents_total": 8863087.0,
       "supporters_count": 3,
       "opponents_count": 14,
@@ -77,7 +77,7 @@
         {
           "name": "IG Nachhaltigkeitsinitiative, Dübendorf",
           "position": "supporter",
-          "total": 5861000.0,
+          "total": 5891000.0,
           "campaign_id": 579
         },
         {
