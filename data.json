@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-05-10 21:44",
+  "lastUpdate": "2026-05-11 11:31",
   "nextVoteDate": "14.06.2026",
   "translations": {
     "fr": {
@@ -45,7 +45,7 @@
       "opponents_count": 14,
       "actors": [
         {
-          "name": "Alliance pour une Suisse qui fonctionne, Bern",
+          "name": "Alliance pour une Suisse qui fonctionne, Berne",
           "position": "opponent",
           "total": 127000.0,
           "campaign_id": 571
