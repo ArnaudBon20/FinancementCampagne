@@ -1,5 +1,31 @@
 [
   {
+    "timestamp": "2026-05-20 16:27",
+    "changes": [
+      {
+        "votation_id": 28,
+        "title": {
+          "fr": "Pas de Suisse à 10 millions ! (initiative pour la durabilité)",
+          "de": "Keine 10-Millionen-Schweiz! (Nachhaltigkeitsinitiative)",
+          "it": "No a una Svizzera da 10 milioni! (Iniziativa per la sostenibilità)"
+        },
+        "date": "14.06.2026",
+        "supporters_before": 6442500.0,
+        "supporters_after": 6592500.0,
+        "opponents_before": 9073087.0,
+        "opponents_after": 9073087.0,
+        "new_entry": false,
+        "changed_actors": [
+          {
+            "name": "IG Nachhaltigkeitsinitiative, Dübendorf",
+            "position": "supporter",
+            "amount": 6041000.0
+          }
+        ]
+      }
+    ]
+  },
+  {
     "timestamp": "2026-05-13 15:44",
     "changes": [
       {
