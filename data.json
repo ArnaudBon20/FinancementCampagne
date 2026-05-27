@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-05-26 22:17",
+  "lastUpdate": "2026-05-27 11:44",
   "nextVoteDate": "14.06.2026",
   "translations": {
     "fr": {
@@ -40,7 +40,7 @@
       },
       "date": "14.06.2026",
       "supporters_total": 6592500.0,
-      "opponents_total": 9138087.0,
+      "opponents_total": 9468087.0,
       "supporters_count": 3,
       "opponents_count": 17,
       "actors": [
@@ -137,7 +137,7 @@
         {
           "name": "Sozialdemokratische Partei der Schweiz, Bern",
           "position": "opponent",
-          "total": 1630000.0,
+          "total": 1960000.0,
           "campaign_id": 580
         },
         {
