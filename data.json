@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-05-28 11:44",
+  "lastUpdate": "2026-05-28 16:57",
   "nextVoteDate": "27.09.2026",
   "translations": {
     "fr": {
@@ -37,6 +37,20 @@
         "fr": "Sauvegarder la neutralité suisse (initiative sur la neutralité)",
         "de": "Wahrung der schweizerischen Neutralität (Neutralitätsinitiative)",
         "it": "Salvaguardia della neutralità svizzera (Iniziativa sulla neutralità)"
+      },
+      "date": "27.09.2026",
+      "supporters_total": 0,
+      "opponents_total": 0,
+      "supporters_count": 0,
+      "opponents_count": 0,
+      "actors": []
+    },
+    {
+      "id": 32,
+      "title": {
+        "fr": "Pour une alimentation sûre – grâce au renforcement de la protection indigène durable, à davantage de denrées alimentaires végétales et à une eau potable propre (initiative sur l’alimentation)",
+        "de": "Für eine sichere Ernährung – durch Stärkung einer nachhaltigen inländischen Produktion, mehr pflanzliche Lebensmittel und sauberes Trinkwasser (Ernährungsinitiative)",
+        "it": "Per un’alimentazione sicura – mediante il rafforzamento di una produzione nazionale sostenibile, più derrate alimentari vegetali e acqua potabile pulita (Iniziativa sull’alimentazione)"
       },
       "date": "27.09.2026",
       "supporters_total": 0,
