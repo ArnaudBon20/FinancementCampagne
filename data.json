@@ -1,6 +1,6 @@
 {
-  "lastUpdate": "2026-05-27 22:28",
-  "nextVoteDate": "14.06.2026",
+  "lastUpdate": "2026-05-28 11:44",
+  "nextVoteDate": "27.09.2026",
   "translations": {
     "fr": {
       "title": "Financement des campagnes",
@@ -31,6 +31,20 @@
     }
   },
   "votations": [
+    {
+      "id": 31,
+      "title": {
+        "fr": "Sauvegarder la neutralité suisse (initiative sur la neutralité)",
+        "de": "Wahrung der schweizerischen Neutralität (Neutralitätsinitiative)",
+        "it": "Salvaguardia della neutralità svizzera (Iniziativa sulla neutralità)"
+      },
+      "date": "27.09.2026",
+      "supporters_total": 0,
+      "opponents_total": 0,
+      "supporters_count": 0,
+      "opponents_count": 0,
+      "actors": []
+    },
     {
       "id": 28,
       "title": {
